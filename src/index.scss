@@ -1,0 +1,82 @@
+@import './assets/styles/reset.css';
+@import './assets/styles/helpClasses.scss';
+
+$primary-color: #d19a34;
+$primary-d: #a77a27;
+$primary-l: #e0ae4f;
+
+$card-color:#5f5959;
+$grey-color:#cecdcd;
+$grey2-color:#dfdfdf;
+
+$headlines-color:#292929;
+$text-color: #393939;
+
+// GlobalStyles
+body{
+    background-color: $grey-color;
+}
+header{
+    background-color: $card-color;
+}
+main{
+    width: 80%;
+    height: 100%;
+    overflow: auto;
+    padding: 2rem 5rem;
+}
+div, main, header{
+    box-sizing: border-box;
+}
+h1,h2,h3{
+    color: $headlines-color;
+}
+p{
+    color: $text-color;
+}
+input{
+    border: 2px $primary-color solid;
+    outline: none;
+    padding: 0.5rem;
+    &:focus{
+        border: 2px $primary-d solid;
+    }
+    &:active{
+        border: 2px $primary-l solid;
+    }
+}
+img{
+    width: 100%;
+}
+
+
+
+// Header
+.header{
+    @extend .flex-c-sb;
+    padding: 1rem 2rem;
+    height: 10vh;
+    &__logo{
+        width: 10%;
+        img{
+            min-width: 100px;
+        }
+    }
+}
+
+
+// Main & Wrapper
+.wrapper{
+    height: 90vh;
+    @extend .flex-wrap;
+}
+.sidebar{
+    width: calc(20% - 1px);
+    padding: 1rem 2rem;
+    background-color: $grey2-color;
+    border-right: 1px $primary-d solid;
+}
+
+h1{
+    font-size:2rem;
+}
