@@ -14,12 +14,11 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Hello home</h1>
+    <div className="productsList">
       {products.map((product) => {
         return (
-          <div key={product.id}>
-            <p>{product.data.title}</p>
+          <div className="card" key={product.id}>
+            <h3 className="card__title">{product.data.title}</h3>
             <p>{product.data.smallDescription}</p>
             <p>{product.data.accessibility}</p>
             <p>{product.data.producer}</p>
