@@ -19,7 +19,9 @@ const User = () => {
         setUserMenu(true);
       }}
       onMouseLeave={() => {
-        setUserMenu(false);
+        setTimeout(() => {
+          setUserMenu(false);
+        }, 1000);
       }}
     >
       <p>{user}</p>

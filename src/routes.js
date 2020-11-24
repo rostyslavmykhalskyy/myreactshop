@@ -3,9 +3,11 @@ import jwtDecode from "jwt-decode";
 import cookie from "js-cookie";
 
 import { Switch, Route } from "react-router-dom";
+
 //Pages
 import Home from "./pages/Home";
-import Admin from "./pages/Admin";
+import Admin from "./pages/admin/Admin";
+import Products from "./pages/Products";
 import SignUp from "./pages/auth/SignUp";
 import SignIn from "./pages/auth/SignIn";
 import { useDispatch } from "react-redux";
@@ -28,6 +30,7 @@ const Routes = () => {
     <Switch>
       <Route exact path="/admin" component={Admin} />
       <Route exact path="/" component={Home} />
+      <Route exact path="/products" component={Products} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/signin" component={SignIn} />
     </Switch>

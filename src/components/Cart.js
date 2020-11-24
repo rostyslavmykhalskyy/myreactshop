@@ -1,13 +1,14 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import User from "./User";
+// import User from "./User";
 
 const Cart = () => {
   return (
     <>
-      <User />
-      <FontAwesomeIcon icon={faShoppingCart} size="lg" />
+      {/* <User /> */}
+      <button className="btn-icon">
+        <i className="i-cart"></i>
+      </button>
+      {/* <FontAwesomeIcon icon={faShoppingCart} size="lg" /> */}
     </>
   );
 };

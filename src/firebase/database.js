@@ -21,6 +21,25 @@ class Database {
     });
     return categoriesArray;
   }
+  async addCategory(newCategory) {
+    if (!newCategory.parentId.length) {
+      delete newCategory.parentId;
+    }
+    await this.db.collection("categories").add(newCategory);
+  }
+  async deleteCategory(categoryId) {
+    await this.db.collection("categories").doc(categoryId).delete();
+  }
+  async updateCategory({ categoryId, parentId, name }) {
+    const updatedCategory = { name, parentId };
+    if (!updatedCategory.parentId.length) {
+      delete updatedCategory.parentId;
+    }
+    await this.db
+      .collection("categories")
+      .doc(categoryId)
+      .update(updatedCategory);
+  }
 }
 
 export default new Database();

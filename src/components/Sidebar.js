@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { getCategories } from "../store/actions";
@@ -6,6 +6,7 @@ import { getCategories } from "../store/actions";
 const Sidebar = () => {
   const categories = useSelector((state) => state.products.categories);
   const dispatch = useDispatch();
+  const [showChild, setShowChild] = useState("initialState");
   useEffect(() => {
     dispatch(getCategories());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -22,22 +23,33 @@ const Sidebar = () => {
     });
     return parents.map((parent) => {
       return (
-        <ul key={parent.id}>
-          <li>
-            <h2>{parent.data.name}</h2>
-          </li>
-          {childs.map((child) => {
-            if (child.data.parentId === parent.id) {
-              return (
-                <li key={child.id}>
-                  <h3>{child.data.name}</h3>
-                </li>
-              );
-            } else {
-              return "";
-            }
-          })}
-        </ul>
+        <div
+          key={parent.id}
+          onMouseEnter={() => {
+            setShowChild(parent.id);
+          }}
+          onMouseLeave={() => {
+            setShowChild("");
+          }}
+        >
+          <h3>{parent.data.name}</h3>
+          {/* {true && ( */}
+          {showChild === parent.id && (
+            <ul>
+              {childs.map((child) => {
+                if (child.data.parentId === parent.id) {
+                  return (
+                    <li key={child.id}>
+                      <h3>{child.data.name}</h3>
+                    </li>
+                  );
+                } else {
+                  return "";
+                }
+              })}
+            </ul>
+          )}
+        </div>
       );
     });
   };
@@ -48,7 +60,6 @@ const Sidebar = () => {
   if (usePathname() === "/") {
     return (
       <div className="sidebar">
-        <h2 className="sidebar__title">Categories</h2>
         <nav className="sidebar__navigation">{categoriesParse()}</nav>
       </div>
     );

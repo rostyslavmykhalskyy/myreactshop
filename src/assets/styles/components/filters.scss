@@ -1,0 +1,286 @@
+.filter {
+    box-shadow: 0px 3px 6px #00000029;
+
+    &__title {
+        @extend .flex-c;
+        padding: 14px 12px;
+        cursor: pointer;
+
+        h4 {
+            margin-left: 12px;
+            font-family: "latobold";
+            font-size: calcRem(18);
+        }
+
+        i {
+            transition: all .2s ease;
+        }
+
+    }
+
+    &--active {
+        .filter__accordion {
+            box-shadow: 0px 3px 6px #00000029;
+        }
+
+        i {
+            transform: rotate(180deg);
+        }
+
+    }
+
+    &__accordion {
+        padding: 0 40px;
+        overflow: hidden;
+        max-height: 0;
+        transition: all 0.2s ease-out;
+
+        >div {
+            margin: 14px auto;
+        }
+
+    }
+}
+
+.sliderRangeDouble {
+    p {
+        margin-top: 20px;
+    }
+
+    input[type=range] {
+        pointer-events: none;
+        -webkit-appearance: none;
+        /* Hides the slider so that custom slider can be made */
+        width: 100%;
+        /* Specific width is required for Firefox. */
+        background: transparent;
+        position: relative;
+        z-index: 1;
+        margin: 0;
+
+        &:focus {
+            z-index: 2;
+        }
+
+        /* Otherwise white in Chrome */
+        &:last-of-type() {
+            transform: translateY(-100%);
+
+            &::-webkit-slider-runnable-track {
+                background: transparent;
+            }
+        }
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        pointer-events: auto;
+    }
+
+    input[type=range]:focus {
+        outline: none;
+        /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+    }
+
+    input[type=range]::-ms-track {
+        width: 100%;
+        cursor: pointer;
+
+        /* Hides the slider so custom styles can be added */
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 20px;
+        width: 20px;
+        border-radius: 10px;
+        background: #F5907C;
+        cursor: pointer;
+        // margin-top: -8px;
+        /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+        // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        /* Add cool effects to your sliders! */
+    }
+
+    /* All the same stuff for Firefox */
+    // input[type=range]::-moz-range-thumb {
+    //     height: 20px;
+    //     width: 20px;
+    //     border-radius: 10px;
+    //     background: #F5907C;
+
+    //     cursor: pointer;
+    // }
+
+    // /* All the same stuff for IE */
+    // input[type=range]::-ms-thumb {
+    //     height: 20px;
+    //     width: 20px;
+    //     border-radius: 10px;
+    //     background: #F5907C;
+    //     cursor: pointer;
+    // }
+
+    input[type=range]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        background: transparent;
+    }
+
+    // input[type=range]:focus::-webkit-slider-runnable-track {
+    //     background: #367ebd;
+    // }
+
+    // input[type=range]::-moz-range-track {
+    //     width: 100%;
+    //     height: 8.4px;
+    //     cursor: pointer;
+    //     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    //     background: #3071a9;
+    //     border-radius: 1.3px;
+    //     border: 0.2px solid #010101;
+    // }
+
+    // input[type=range]::-ms-track {
+    //     width: 100%;
+    //     height: 8.4px;
+    //     cursor: pointer;
+    //     background: transparent;
+    //     border-color: transparent;
+    //     border-width: 16px 0;
+    //     color: transparent;
+    // }
+
+    // input[type=range]::-ms-fill-lower {
+    //     background: #2a6495;
+    //     border: 0.2px solid #010101;
+    //     border-radius: 2.6px;
+    //     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    // }
+
+    // input[type=range]:focus::-ms-fill-lower {
+    //     background: #3071a9;
+    // }
+
+    // input[type=range]::-ms-fill-upper {
+    //     background: #3071a9;
+    //     border: 0.2px solid #010101;
+    //     border-radius: 2.6px;
+    //     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    // }
+
+    // input[type=range]:focus::-ms-fill-upper {
+    //     background: #367ebd;
+    // }
+    .rangeTrack {
+        height: 4px;
+        margin-top: -32px;
+        background: #D4D3D1;
+        // overflow: hidden;
+        border-radius: 20px;
+
+        .track {
+            border-radius: 20px;
+            height: 100%;
+            background-color: #F5907C;
+        }
+    }
+
+}
+
+/* The container */
+.checkboxField {
+    display: block;
+    position: relative;
+    padding-left: 36px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: 'latoregular';
+
+    /* Hide the browser's default checkbox */
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    // /* On mouse-over, add a grey background color */
+    // &:hover input~.checkmark {
+    //     background-color: #ccc;
+    // }
+
+    /* Show the checkmark when checked */
+    input:checked~.checkmark:after {
+        display: block;
+    }
+
+}
+
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    // background-color: #eee;
+    border: 2px #181818 solid;
+    border-radius: 5px;
+}
+
+
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    @extend .i-checker;
+    content: "";
+    position: absolute;
+    display: none;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: center;
+}
+
+
+
+/* Style the checkmark/indicator */
+.checkboxField .checkmark:after {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // border: solid white;
+    // border-width: 0 3px 3px 0;
+    // -webkit-transform: rotate(45deg);
+    // -ms-transform: rotate(45deg);
+    // transform: rotate(45deg);
+}
+
+.chip {
+    @extend .flex-wrap;
+
+    p {
+        @extend .flex-c;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        padding: 4px 10px;
+        border: 1px #707070 solid;
+        border-radius: 20px;
+
+        &:last-of-type {
+            margin-right: 0;
+        }
+    }
+}

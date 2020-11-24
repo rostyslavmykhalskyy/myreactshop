@@ -1,0 +1,191 @@
+.card {
+    background-color: #fbd2b283;
+    padding: calcRem(24);
+
+    &__title {}
+
+    &__text {
+        margin: 1.5rem 0;
+
+        p {
+            line-height: calcRem(27);
+            font-size: calcRem(20);
+            letter-spacing: 1px;
+
+        }
+    }
+
+    &__actions {
+        button {
+            max-width: 100%;
+            border: 5px #181818 solid;
+            font-family: "latoregular";
+        }
+    }
+}
+
+.card--collections {
+    @extend .flex-c;
+    $cardWidth: 816;
+    width: calcPctW($cardWidth);
+
+    &__picture {
+        width: calcPctW(380, $cardWidth);
+    }
+
+    &__content {
+        width: calcPctW($cardWidth - 380, $cardWidth);
+        padding: calcVh(66) calcPctW(54, $cardWidth) calcVh(60);
+    }
+
+    &__title {
+        margin-bottom: calcRem(70);
+
+        &:after {
+            @include pseudo;
+            width: 4ch;
+            margin-top: calcRem(20);
+            border-bottom: 3px solid #181818;
+        }
+    }
+
+    .card__actions {
+        button {
+            padding: calcRem(20) calcRem(88);
+            font-size: calcRem(24);
+            background-color: transparent;
+        }
+    }
+
+}
+
+.single-card {
+    align-items: unset;
+    $cardWidth: 1104;
+    width: calcPctW($cardWidth);
+    margin-top: calcVh(110);
+
+    .card--collections__title {
+        margin-bottom: calcVh(135);
+    }
+
+    .card--collections__picture {
+        height: 100%;
+        // width: calcPctW(410, $cardWidth);
+
+    }
+
+    .card--collections__content {
+        width: calcPctW($cardWidth - 410, $cardWidth);
+        // height: 100%;
+        padding: calcVh(82) calcPctW(44, $cardWidth) calcVh(72);
+
+    }
+}
+
+.card--product {
+    box-shadow: 0px 3px 6px #00000029;
+
+    &__picture {
+        min-width: 100%;
+        height: calcVh(318);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0px 3px 6px #00000029;
+    }
+
+    &__picture[new='true'] {
+        &::before {
+            content: "NEW";
+            padding: 6px 16px;
+            display: block;
+            position: absolute;
+            margin-top: 1rem;
+            margin-left: -0.8rem;
+            background-color: #181818;
+            font-size: calcRem(12);
+            color: white;
+            font-family: "latoregular";
+            text-align: center;
+            z-index: 2;
+        }
+
+        &::after {
+            // background-color: #A8A8A8;
+            content: '';
+            display: block;
+            // width: 0.8rem;
+            // height: 0.8rem;
+            margin-left: -0.8rem;
+            position: absolute;
+            margin-top: calcRem(40);
+            border: .4rem #A8A8A8 solid;
+            border-left: .4rem transparent solid;
+            border-bottom: .4rem transparent solid;
+            box-sizing: border-box;
+            ;
+        }
+    }
+
+    &__content {
+        @extend .flex-wrap,
+        .flex-sb;
+        padding: calcVh(18) 3% calcVh(18) 5%;
+    }
+
+    &__title {
+        h3 {
+            font-family: "latobold";
+            font-size: calcRem(18);
+        }
+
+        p {
+            margin-top: calcVh(6);
+            text-indent: 1rem;
+        }
+    }
+
+    &__actions {}
+
+    &__price {
+        width: 100%;
+        margin-top: 1.8vh;
+
+        p {
+
+            font-family: 'latobold';
+        }
+    }
+
+    &__price[discount='true'] {
+        // @extend .flex;
+
+        p {
+            text-decoration-line: line-through;
+            color: #D4D3D1;
+            position: relative;
+
+            &::before {
+                content: attr(discount-pct) "% Off";
+                display: inline-block;
+                position: absolute;
+                right: 5%;
+                border: 1px #181818 solid;
+                border-radius: 9px;
+                padding: 0.5vh 3.3%;
+                color: #181818;
+                font-size: calcRem(14);
+                transform: translateY(-0.5vh);
+                font-family: "latoregular";
+            }
+
+            &::after {
+                content: "USD "attr(new-price);
+                display: inline-block;
+                color: #181818;
+                margin-left: 3%;
+            }
+        }
+    }
+}

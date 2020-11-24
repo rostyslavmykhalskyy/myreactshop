@@ -5,7 +5,9 @@ export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_CATEGORIES = "GET_CATEGORIES";
 export const SET_USER = "SET_USER";
 export const USER_SIGNUP = "USER_SIGNUP";
+export const ADD_CATEGORY = "ADD_CATEGORY";
 
+///////////////////////////////////////////////////////// PRODUCTS
 export const getProducts = () => {
   return async function (dispatch) {
     const productsArray = await database.getProducts();
@@ -26,6 +28,7 @@ export const getCategories = () => {
   };
 };
 
+///////////////////////////////////////////////////////// USER
 export const userSignUp = ({ email, password }) => {
   return async function (dispatch) {
     try {
@@ -57,5 +60,25 @@ export const setUser = (user, dispatch) => {
   return {
     type: SET_USER,
     user
+  };
+};
+
+///////////////////////////////////////////////////////// ADMIN
+export const addCategory = (newCategory) => {
+  return async function (dispatch) {
+    await database.addCategory(newCategory);
+    return await dispatch(getCategories());
+  };
+};
+export const deleteCategory = (categoryId) => {
+  return async function (dispatch) {
+    await database.deleteCategory(categoryId);
+    return await dispatch(getCategories());
+  };
+};
+export const updateCategory = (category) => {
+  return async function (dispatch) {
+    await database.updateCategory(category);
+    return await dispatch(getCategories());
   };
 };
